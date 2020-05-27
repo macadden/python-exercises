@@ -6,6 +6,7 @@
 #d)Preguntarle al usuario, al final del programa, si desea tomar otro alumno.
 #e)El programa deberá repetirse mientras la respuesta de "d)" sea "No".
 
+from random import *
 resp = "Si"
 while (resp != "No"):
     print("Ingrese el nombre del alumno:")
@@ -390,3 +391,350 @@ print(f"Sum of first {nTerms}: {summ}")
 
 #----------------------------------------------------------------------------------------------------------------
 
+# 16)
+# Usar un WHILE para mostrar los nros del 1 al 100.
+
+i = 1
+while(i <= 100):
+    print(i)
+    i += 1
+print("Fin del bucle")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 17)
+# Usar un FOR para mostrar los nros del 1 al 100.
+
+for i in range(1, 101):
+    print(i)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 18)
+# Mostrar los caracteres de la cadena "Hola mundo".
+
+for i in "Hola mundo":
+    print(i)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 19)
+# Mostrar los nros PARES del 1 al 100.
+
+# 1°forma.
+for i in range(1, 101):
+    if((i % 2) == 0):
+        print(i)
+    print("")
+
+# 2°forma,
+print("2°forma")
+for i in range(2, 101, 2):
+    print(i)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 20)
+# Generar un RANGO entre 0 y 10.
+
+rango = list(range(10))
+print(rango)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 21)
+# Generar un NÚMERO entre 5 y 10.
+
+rAngo = list(range(5, 10))
+print(rAngo)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 22)
+# Generar un RANGO de 10 a 0.
+
+Rango = list(range(10, 0, -1))  # "-1" mustra la regresión.
+print(Rango)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 23)
+# Generar un rango de 0 a 10 y de 15 a 20, incluidos el 10 y el 20.
+
+rango1 = list(range(0, 11))
+rango2 = list(range(15, 21))
+union = rango1 + rango2
+print(union)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 24)
+# Generar un rango desde 0 hasta la longitud de la cadena "Hola mundo".
+
+rango24 = list(range(0, len("Hola mundo")))
+print(rango24)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 25)
+# Pide dos cadenas por teclado, muestra ambas cadenas con un espacio entre ellas y con los 2 primeros caracteres
+# intercambiados. Por ejemplo, "hola mundo" pasaría a "mula hondo".
+
+cadena1 = input("ingrese 1°cadena: ")
+cadena2 = input("ingrese 2°cadena: ")
+print(cadena2[:2] + cadena1[2:] + "" + cadena1[:2] + cadena2[2:])
+# "[:2]" = empieza en el inicio y termina en el 2do caracter; "[2:]" = empieza en el 2do caract (excluyéndolo).
+# Esto se basa en el operador slice (rodaja) cuya sintaxis general es: "iterable [ inicio : fin : paso ]"
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 26)
+# Pide una cadena e indica si es o no un palíndromo (que se lea igual de izq. a derecha como de derecha a izq.).
+
+cad1 = input("ingrese una cadena: ")
+# Se recorre hacia atrás y se invierte la cadena por no incluir inicio ni final.
+cadena_al_reves = cad1[::-1]
+print(cadena_al_reves)
+if(cad1 == cadena_al_reves):
+    print("Es palíndromo")
+else:
+    print("No es palíndromo")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 27)
+# Adivina el nro entre 1 y 100.
+
+
+def generaNroAleatorio(min, max):
+    try:
+        if min > max:
+            aux = min
+            min = max
+            max = aux
+        # Devuelve un nro random del par ordenado, incluyendo extremos.
+        return randint(min, max)
+    except TypeError:
+        print("Debes escribir números")
+        return -1  # ¿¿¿???
+
+#MAIN
+nro_buscado = generaNroAleatorio(1, 100)
+encontrado = False
+intentos = 0
+
+while not encontrado:
+    nro_usuario = int(input("Introduce el número buscado: "))
+    if nro_usuario > nro_buscado:
+        print("El número que buscas es menor")
+        intentos = intentos + 1
+    elif nro_usuario < nro_buscado:
+        print("El número que buscas es mayor")
+        intentos = intentos + 1
+    else:
+        encontrado = True
+        print("Has acertado, el número correcto es", nro_usuario, "te ha llevado", intentos,
+              "intentos ganar este juego")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 28)
+# Definir una función "max()" que tome como argumento dos números y devuelva el mayor de ellos.
+
+
+def max(n1, n2):
+    if n1 < n2:
+        print(n2)
+    elif n1 > n2:
+        print(n1)
+    else:
+        print("Son iguales")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 29)
+# Definir una función "max_de_tres()" que tome tres nros como argumentos y devuelva al mayor de ellos.
+
+
+def max_de_tres(n1, n2, n3):
+    if n1 > n2 and n1 < n3:
+        print(n1)
+    elif n1 < n2 and n2 > n3:
+        print(n2)
+    elif n1 < n3 and n2 < n3:
+        print(n3)
+    else:
+        print("Son iguales")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 30)
+# Definir una función que calcule la longitud de una lista o una cadena dada.
+
+def largo_cadena(lista):
+    cont = 0
+    for i in lista:
+        cont += 1
+    return cont
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 31)
+# Escribir una función que tome un carácter y devuelva "True" si es una vocal, de lo contrario "False".
+
+def es_vocal (x):
+    if x=="a" or x=="e" or x=="i" or x=="o" or x=="u":
+        return True
+    elif x=="A" or x=="E" or x=="I" or x=="O" or x=="U":
+        return True
+    else:
+        return False
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 32)
+# Definir una función "inversa()" que calcule la inversión de una cadena. Por ejemplo la cadena "estoy probando"
+# debería devolver la cadena "odnaborp yotse".
+
+def inversa(cadena32):
+    invertida=""
+    cont = len(cadena32)
+    indice = -1 # ¿Por qué tiene que ser -1 para posicionarse en el final de la cadena?
+    while cont >= 1:
+        invertida += cadena32[indice]
+        indice = indice + (-1)
+        cont -= 1
+    return invertida
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 33) ¿Está bien?
+# Definir una función "es_palindromo()" que reconozca palíndromos. Ejemplo: "es_palíndromo("radar")" devolvería TRUE.
+
+#Defino la función del punto "32)"
+
+def es_palindromo (cadena33):
+    p_invertida = inversa(cadena33)
+    indice = 0
+    cont33 = 0
+    for i in range (len(cadena33)):
+        if p_invertida[indice] == cadena33[indice]:
+            indice += 1
+            cont33 += 1
+        else:
+            print("False")
+            break
+
+if cont33 == len(cadena33): #Si el contador = cantidad de letras de la cadena es porque todas las letras son iguales
+    print("True")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 34)
+# Definir una función "superposicion()" que tome dos listas y devuelva "true" si tienen al menos un miembro en común
+# o False en caso contratrio. Escribir la función usando el bucle FOR anidado.
+
+def superposicion(lista1,lista2):
+    for i in lista1:
+        for x in lista2:
+            if i == x:
+                return True
+    return False
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 35)
+# Definir un histograma "procedimiento()" que tome una lista de nros entros e imprima un histograma en pantalla.
+# Ejemplo: procedimiento([4,9,7]) debería imprimir lo siguiente:
+# ****
+# *********
+# *******
+
+def procedimiento (lista):
+    for i in lista:
+        print(i*"x")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 36) ¿Está bien?
+# Escribir la función "mas_larga()" que tome una lista de palabras y devuelva la más larga.
+
+
+def mas_larga(lista):
+    inicio36 = 0
+    for i in lista:
+        if i > inicio36:
+        inicio36 = i
+        return inicio
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 37)
+# Escribir la función "filtrar_palabras()" que tome una lista de palabras, un entero n y devuelva las palabras que
+# tengan más de n caracteres.
+
+def filtrar_palabras(lista,n):
+    for i in lista:
+        if len(i) > n:
+            print(i)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 38)
+# Escribir un programa que diga al usuario que ingrese una cadena. El programa debe evaluar la cadena y decir cuántas
+# letras mayúsculas tiene.
+
+#-*- Codification: utf-8 -*
+
+def c_mayus (cadena):
+    cont = 0
+    for i in cadena:
+        if i !=i.lower(): # "lower()" convierte una cadena en minúsculas.
+            cont += 1
+
+print("La cadena tiene",cont,"mayuscula(s)")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 39) ¿¿¿???
+# Construir un pequeño programa que convierta números binarios en enteros.
+
+def aDecimal(numeroBin):
+    decimal = 0
+    exp = len(numeroBin)-1  # ¿Por qué -1?
+    for i in numeroBin:
+        decimal += (int(i) * 2**(exp))
+        exp = exp - 1
+    return decimal
+
+#----------------------------------------------------------------------------------------------------------------
+
+# Para ingreso de nombre de una persona:
+
+nombre2 = raw_input("Nombre de la persona: ") # "raw_input" hará que Python almacene lo que sea dentro de un String.
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 40)
+# Definir una lista con un conjunto de nombres. Imprimir la cantidad que comienza con la letra "a". También se puede
+# dar a elegir al usuario la letra que quiera buscar.
+
+def main():
+    x = input("¿Cuántos nombres quiere ingresar?: ")
+    lista = []
+    for i in range(x):
+        a = raw_input("ingrese el nombre: ")
+        list.append(a) #agrega al FINAL de la lista.
+    
+    print("")
+    comienzo = raw_input("¿Con qué letra empieza el nombre?: ")
+    cont = 0
+    for i in lista:
+        if i[0] == comienzo.lower() or i[0] == comienzo.upper():
+            cont += 1
+    return cont
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 41)
+#
