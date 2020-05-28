@@ -1,3 +1,15 @@
+"""
+FOR variable IN secuencia:
+    #bloque a repetir
+
+WHILE condición:
+     #bloque a repetir
+
+
+
+
+
+"""
 # 1)
 # Realizar un programa que solicite:
 #a)El nombre del alumno.
@@ -493,7 +505,7 @@ print(cadena2[:2] + cadena1[2:] + "" + cadena1[:2] + cadena2[2:])
 
 cad1 = input("ingrese una cadena: ")
 # Se recorre hacia atrás y se invierte la cadena por no incluir inicio ni final.
-cadena_al_reves = cad1[::-1]
+cadena_al_reves = cad1[::-1] #el último caracter de la cadena, cuando voy hacia atrás, es -1, el anteúltimo -2 y así.
 print(cadena_al_reves)
 if(cad1 == cadena_al_reves):
     print("Es palíndromo")
@@ -582,10 +594,20 @@ def largo_cadena(lista):
 # 31)
 # Escribir una función que tome un carácter y devuelva "True" si es una vocal, de lo contrario "False".
 
+x=input("Letra: ")
 def es_vocal (x):
     if x=="a" or x=="e" or x=="i" or x=="o" or x=="u":
         return True
     elif x=="A" or x=="E" or x=="I" or x=="O" or x=="U":
+        return True
+    else:
+        return False
+
+#otra forma:
+
+x=input("Letra: ")
+def es_vocal (x):
+    if x.lower() in "aeiou":
         return True
     else:
         return False
@@ -736,5 +758,217 @@ def main():
 
 #----------------------------------------------------------------------------------------------------------------
 
+# Quiero el caracter de la última posición de una cadena.
+
+# c=cadena de 8 caracteres
+c="buen dia"
+c[len(c)-1] #Devuelve 'a'.
+
+# ó
+
+c[-1:]
+
+#----------------------------------------------------------------------------------------------------------------
+
+"casa" < "cosa" #porque con strings hace la comparación usando de referencia ASCII. Como o=111 y a=97 => es más grande.
+
+#----------------------------------------------------------------------------------------------------------------
+
+"hola"[1+1] #Da igual a "L" porque obtengo el caracter de la posición nro 2.
+
+#----------------------------------------------------------------------------------------------------------------
+
+#Manejo de STRINGS.
+
+cadena3="programación en python"
+cadena3.find("python") #Devuelve 16; "find()" indica DÓNDE empieza una sub-cadena. Además devuelve un ÚNICO valor.
+cadena3.find("p") # Devuelve 0; devuelve la 1ra "p" que encuentre.
+cadena3.find("z") # Devuelve -1; indicando que NO se encuentra.
+cadena3.find("z") == -1 # Devuelve TRUE e indica que la sub-cadena (o caracter) NO está.
+cadena3.count("p") #Devuelve 2; cuenta ocurrencias de sub-cadenas o caracteres.
+cadena.replace("python","****") #Devuelve 'programación en ****'; va a reemplazarla todas las veces que la encuentre.
+
+"python" in cadena3 # Devuelve TRUE.
+
+#----------------------------------------------------------------------------------------------------------------
+
+print("ingresá tu edad: ")
+edad=input()
+
+#Es lo mismo que (aunque no hace salto de línea, queda todo en el mismo renglón):
+
+edad=input("ingresá tu edad: ")
+
+#"input()" siempre toma el ingreso de teclado como tipo STRING, entonces:
+
+edad=int(edad)
+
+#ó
+
+edad=int(input("ingresá tu edad: ")) #Esto va a funcionar sólo si se ingresa un nro entero.
+
+#----------------------------------------------------------------------------------------------------------------
+
 # 41)
-#
+# Escribir un programa que, dado un número entero, muestre su valor absoluto.
+
+numero = int(input("número: "))
+if numero < 0:
+    numero = numero * (-1) # Es lo mismo que: " numero *=-1 "
+print("El valor absoluto es", numero)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 42)
+# Solicitar al usuario que ingrese los nombres de dos personas, los cuales se almacenarán en dos variables.
+# Luego, imprimir "coincidencia" si los nombres comienzan o terminan con la misma letra; "no hay coincidencia"
+# en caso contrario.
+
+nom1 = input("Un nombre: ")
+nom2 = input("Otro nombre: ")
+
+if nom1[0] == nom2[0] or nom1[-1] == nom2[-1]:
+    print("Coincidencia")
+else:
+    print("No hay coincidencia")
+
+# otra forma (útil para otros lenguajes):
+
+nom3 = input("Un nombre: ")
+nom4 = input("Otro nombre: ")
+indice_final_nom3 = len(nom3)-1
+indice_final_nom4 = len(nom4)-1
+
+if nom3[0] == nom4[0] or nom3[indice_final_nom3] == nom4[indice_final_nom4]:
+    print("Coincidencia")
+else:
+    print("No hay coincidencia")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 43)
+# En un bucle FOR sumar todos los numeros entre 0 y 100 que sean múltiplos de 3.
+
+total = 0
+for i in range(101):
+    if i % 3 == 0:
+    total = total + i  # es igual a "total += i"
+
+print("sumatoria:", total)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 44)
+# Dado un número entero positivo, mostrar su factorial,
+# El factorial se obtiene multiplicando todos los números entre el nro dado y 1.
+
+nro = int(input("Número: "))
+f = 1
+if nro != 0:
+    for i in range(1, nro+1):
+        f = f * i
+
+print("Factorial: ", f)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 45)
+# Escribir un programa que permita al usuario ingresar 6 nros enteros, que pueden ser positivos o negativos. Al
+# finalizar, mostrar la sumatoria de los números negativos y el promedio de los positivos.
+# NOTA: Recordar que no es posible dividir por cero.
+
+sumNegativos = 0
+sumPositivos = 0
+cantidadPositivos = 0
+
+for i in range(6):
+    nro45 = int(input("Número: "))
+    if nro45 >= 0:
+        cantidadPositivos += 1
+        sumPositivos += nro45
+    else:
+        sumNegativos += nro45
+
+print("sumatoria de negativos:", sumNegativos)
+
+if cantidadPositivos != 0:
+    print("Promedio de positivos:", sumaPositivos/cantidadPositivos)
+else:
+    print("No se ingresaron números positivos")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 46)
+# Escribir un programa que muestre el mayor nro positivo ingresado por teclado. Si se ingresa un nro negativo el
+# programa corta su ejecución.
+
+mayor = -1
+h = int(input("Número positivo:"))
+while h >= 0:
+    if h > mayor:
+        mayor = h
+    h = int(input("Número positivo:"))
+print("Mayor número ingresado:", mayor)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 47)
+# Escribir un programa que permita descomponer un número dígito por dígito y los vaya sumando a todos.
+
+suma = 0
+n = int(input("Número positivo:"))
+while n != 0:
+    digito = n % 10 # obtengo el último dígito.
+    suma += digito
+    n = n//10 # elimino el último dígito para la próxima iteración.
+print("Suma de los dígitos:", suma)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 48)
+# Escribir un programa que le pida al usuario que ingrese números y corte su ejecución cuando se ingrese el "-1".
+# repetir lo del ejercicio 47), pero además contar los números pares ingresados.
+
+pares=0
+ñ=int(input("Número(-1 para terminar el programa): "))
+while ñ != -1:
+    if (ñ % 2) == 0:
+        pares += 1
+
+    suma = 0
+    while ñ != 0:
+        digito = ñ % 10 # obtengo el último dígito.
+        suma += digito
+        ñ = ñ//10 # elimino el último dígito para la próxima iteración.
+print("Suma de los dígitos:", suma)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 49)
+# Realizar un programa que permita saber cuántos dígitos pares y cuántos impares tiene un nro ingresado por el usuario.
+
+totalPares = 0
+totalImpares = 0
+numero49 = int(input("Número: "))
+
+while numero49 != 0: #Si ingresa un nuevo número !=0, sigue.
+    pares49 = 0
+    impares49 = 0
+    while numero49 != 0: # Si al ir descontando dígitos el número sigue siendo != 0, sigue.
+        ultimoDigito = numero49 % 10
+        if (ultimoDigito % 2) == 0:
+            pares49 += 1
+            totalPares+=1
+        else:
+            impares += 1
+            totalImpares += 1
+        numero49 = numero49 // 10 # elimino el último dígito del número
+    print("El número ingresado tiene",pares,"dígitos pares y",impares,"dígitos impares")
+    numero49 = int(input("Número: "))
+print("Total de dígitos pares:",totalPares)
+print("Total de dígitos impares:",totalImpares)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 50)
+# 
