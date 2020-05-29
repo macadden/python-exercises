@@ -5,9 +5,9 @@ FOR variable IN secuencia:
 WHILE condición:
      #bloque a repetir
 
-
-
-
+DEF identificador(parametros):   #Para secuencia ordenada de elementos.
+    #cuerpo de la función
+    #valor de retorno
 
 """
 # 1)
@@ -918,9 +918,9 @@ print("Mayor número ingresado:", mayor)
 suma = 0
 n = int(input("Número positivo:"))
 while n != 0:
-    digito = n % 10 # obtengo el último dígito.
+    digito = n % 10  # obtengo el último dígito.
     suma += digito
-    n = n//10 # elimino el último dígito para la próxima iteración.
+    n = n//10  # elimino el último dígito para la próxima iteración.
 print("Suma de los dígitos:", suma)
 
 #----------------------------------------------------------------------------------------------------------------
@@ -929,17 +929,17 @@ print("Suma de los dígitos:", suma)
 # Escribir un programa que le pida al usuario que ingrese números y corte su ejecución cuando se ingrese el "-1".
 # repetir lo del ejercicio 47), pero además contar los números pares ingresados.
 
-pares=0
-ñ=int(input("Número(-1 para terminar el programa): "))
+pares = 0
+ñ = int(input("Número(-1 para terminar el programa): "))
 while ñ != -1:
     if (ñ % 2) == 0:
         pares += 1
 
     suma = 0
     while ñ != 0:
-        digito = ñ % 10 # obtengo el último dígito.
+        digito = ñ % 10  # obtengo el último dígito.
         suma += digito
-        ñ = ñ//10 # elimino el último dígito para la próxima iteración.
+        ñ = ñ//10  # elimino el último dígito para la próxima iteración.
 print("Suma de los dígitos:", suma)
 
 #----------------------------------------------------------------------------------------------------------------
@@ -951,24 +951,159 @@ totalPares = 0
 totalImpares = 0
 numero49 = int(input("Número: "))
 
-while numero49 != 0: #Si ingresa un nuevo número !=0, sigue.
+while numero49 != 0:  # Si ingresa un nuevo número !=0, sigue.
     pares49 = 0
     impares49 = 0
-    while numero49 != 0: # Si al ir descontando dígitos el número sigue siendo != 0, sigue.
+    while numero49 != 0:  # Si al ir descontando dígitos el número sigue siendo != 0, sigue.
         ultimoDigito = numero49 % 10
         if (ultimoDigito % 2) == 0:
             pares49 += 1
-            totalPares+=1
+            totalPares += 1
         else:
             impares += 1
             totalImpares += 1
-        numero49 = numero49 // 10 # elimino el último dígito del número
-    print("El número ingresado tiene",pares,"dígitos pares y",impares,"dígitos impares")
+        numero49 = numero49 // 10  # elimino el último dígito del número
+    print("El número ingresado tiene", pares,
+          "dígitos pares y", impares, "dígitos impares")
     numero49 = int(input("Número: "))
-print("Total de dígitos pares:",totalPares)
-print("Total de dígitos impares:",totalImpares)
+print("Total de dígitos pares:", totalPares)
+print("Total de dígitos impares:", totalImpares)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# BREAK - CONTINUE
+
+# WHILE condicion1:
+#   bloque a repetir
+#   IF condicion2:
+#       BREAK            Corta el bucle (IF) y el resto del bloque (WHILE) no se ejecuta. Pasa al resto del programa.
+#   *resto del bloque*
+# *resto del programa*
+#
+#
+# WHILE condicion1:
+#   bloque a repetir
+#   IF condicion2:
+#       CONTINUE        Vuelve a evaluar la condicion1. Saltea el resto del bloque, pero no va al resto del programa.
+#   *resto del bloque*
+# *resto del programa*
 
 #----------------------------------------------------------------------------------------------------------------
 
 # 50)
-# 
+# Ejemplo BREAK en WHILE
+
+while True:  # Se usa cuando necesitamos desplegar un menú o dar opciones y luego desplegar las condiciones de corte.
+    print("Opción 1 - comenzar programa")
+    print("Opción 2 - imprimir listado")
+    print("Opción 3 - finalizar programa")
+    opcion = int(input("opcion elegida: "))
+    if opcion == 1:
+        print("Comenzamos!")
+    elif opcion == 2:
+        print("Listado:")
+        print("U2, Queen, Pink Floyd, Porcupine Tree, Elbow")
+    elif opcion == 3:
+        print("Hasta la próxima")
+        break
+    else:
+        print("Opcion incorrecta. Debe ingresar 1, 2 ó 3")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 51)
+# Ejemplo CONTINUE y BREAK en WHILE
+
+frase = input("Frase: ")
+l = input("Letra para buscar posición: ")
+i = 0
+while i != len(frase):
+    if l != frase[i]:
+        print("No se encontró en la posición", i)
+        i += 1
+        continue
+    print("Se encontró en la posición", i)
+    break
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 52)
+# Escribir un programa que solicite el ingreso de una cantidad indeterminada de números maores que 1, finalizando
+# cuando se reciba un cero.
+# Imprimir la cantidad total de números primos ingresados.
+
+# NOTA: un nro primo es un número NATURAL mayor que 1 que tiene únicamente dos divisores: él mismo y el 1.
+
+cantidad = 0
+s = int(input("Número: "))
+while s != 0:
+    primo = True
+    for i in range(2, s):
+        if (s % i) == 0:
+            primo = False
+            break
+    if primo:  # si sigue siendo True.
+        cantidad += 1
+    s = int(input("Número: "))
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 53)
+# Escribir un programa que permita al usuario ingresar dos años y luego imprima todos los años que sean bisiestos
+# y múltiplos de 10, en ese rango dado.
+
+# NOTA: para que un año sea bisiesto debe ser divisible por 4 y NO debe ser divisible por 100, excepto que también
+#       sea divisible por 400.
+
+anioInicio = int(input("Año inicial: "))
+anioFin = int(input("Año final: "))
+
+for anio in range(anioInicio, anioFin+1):
+    if not (anio % 10) == 0:
+        continue            # paso a la siguiente iteración
+    if not (anio % 4) == 0:
+        continue            # paso a la siguiente iteración
+    if (anio % 100) != 0 or (anio % 400) == 0:
+        print(anio)
+
+# NOTA: Con CONTINUE puedo ahorrarme niveles de anidamiento.
+
+#----------------------------------------------------------------------------------------------------------------
+
+# DICCIONARIOS:
+
+# Util para búsqueda más eficiente entre claves.
+
+# diccionario_vacío = {}
+# diccionario_vacío2 = dict()
+# diccionario_con_elem = {"hola":"hello", "adios":"bye"}
+# diccionario_desde_contenedor = dict([("hola","hello"),("adios","bye")])
+
+# Iterar por pares de un diccionario
+
+# a) Iteración por claves:
+#        FOR clave IN diccionario.keys():   ///    FOR clave IN diccionario:
+#            print(clave)                   ///         print(clave)
+
+# b) Iteración por valores:
+#       FOR valor IN diccionario.values():   ///    FOR clave IN diccionario:
+#           print(valor)                     ///        print(diccionario[clave])
+
+# c) Itreación por clave y valor a la vez:
+#       FOR clave, valor IN diccionario.items():   ///  FOR par IN diccionario.items()
+#           print(clave,valor)                     ///      print(par[0], par[1])
+
+# EJEMPLOS:
+
+# Diccionario desde un contededor:
+
+calendario = [("enero", 1), ("febrero", 2), ("marzo", 3)]
+meses = dict(calendario)
+
+# Diccionario para almacenar los datos de un equipo deportivo de niñas. Uso de clave los nros de camiseta,
+# y como valores listas en las cuales voy a poner: nombre, edad y años que lleva en el equipo.
+
+equipo = {8: ["Melina", 8, 3], 2: ["Lucía", 9, 1], 6: ["María", 7, 2], 9: ["Sofía", 9, 1]}
+
+# La cuestión de conocer cómo iterar en un diccionario es para cuando pase a otro lenguaje de programación.
+
