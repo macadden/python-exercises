@@ -1072,7 +1072,8 @@ for anio in range(anioInicio, anioFin+1):
 
 # DICCIONARIOS:
 
-# Util para búsqueda más eficiente entre claves.
+# Estructuras heterogeneas.
+# Útil para búsqueda más eficiente entre claves.
 
 # diccionario_vacío = {}
 # diccionario_vacío2 = dict()
@@ -1093,17 +1094,184 @@ for anio in range(anioInicio, anioFin+1):
 #       FOR clave, valor IN diccionario.items():   ///  FOR par IN diccionario.items()
 #           print(clave,valor)                     ///      print(par[0], par[1])
 
+
 # EJEMPLOS:
 
-# Diccionario desde un contededor:
+traducciones = {"hola":"hello","adiós":"bye","día":"day","noche":"night"}
+traducciones.keys() #Devuelve: dict_keys(['hola','adiós','día','noche']); es una lista que contiene los strings.
 
+for clave in traducciones.keys(): #Está iterando por una lista ("traducciones.keys()"), así que imprimo la clave.
+        print(clave) #Esta forma de iterar no la tienen todos los lenguajes.
+#devuelve:
+# hola
+# adiós
+# día
+# noche
+
+for valor in traducciones.values():
+    print(valor) #Esta forma de iterar no la tienen todos los lenguajes.
+#devuelve:
+#hello
+#bye
+#day
+#night
+
+for clave in traducciones.keys():
+    print(clave,"==>",traducciones[clave])
+#devuelve:
+# hola ==> hello
+# adiós ==> bye
+# día ==> day
+# noche ==> night
+
+for clave, valor in traducciones.items(): #Itero por los dos a la vez
+    print(clave,"==>",valor)
+#devuelve:
+# hola ==> hello
+# adiós ==> bye
+# día ==> day
+# noche ==> night
+
+# Iterar por una variable sola que va a contener a los dos elementos del par.
+for par in traducciones.items(): #En "par" estoy obteniendo TUPLAS (la clave en la 1ra pos. y el valor en la 2da).
+    print(par[0], "---",par[1])
+
+# NOTA: conviene elegir sólo una variante de itreación para evitar confusiones.
+
+
+
+# Diccionario desde un contededor:
 calendario = [("enero", 1), ("febrero", 2), ("marzo", 3)]
-meses = dict(calendario)
+meses = dict(calendario) #Si ejecutase "meses" devolvería: " {'enero': 1, 'febrero': 2, 'marzo': 3} "
+
 
 # Diccionario para almacenar los datos de un equipo deportivo de niñas. Uso de clave los nros de camiseta,
 # y como valores listas en las cuales voy a poner: nombre, edad y años que lleva en el equipo.
-
 equipo = {8: ["Melina", 8, 3], 2: ["Lucía", 9, 1], 6: ["María", 7, 2], 9: ["Sofía", 9, 1]}
 
 # La cuestión de conocer cómo iterar en un diccionario es para cuando pase a otro lenguaje de programación.
 
+
+for datos in equipo.values():
+    print("nombre:", datos[0],"- edad:",datos[1],"- años en el equipo:", datos[2])
+# Devuelve: 
+# nombre: Melina - edad: 8 - años en el equipo: 3
+# nombre: Lucía - edad: 9 - años en el equipo: 1
+# nombre: María - edad: 7 - años en el equipo: 2
+# nombre: Sofía - edad: 9 - años en el equipo: 1
+
+
+# OPERACIONES CON DICCIONARIOS:
+
+# "dir(dict)": Muestra operaciones posibles con diccionarios.
+# "len(equipo)": Cuantos PARES de elementos tiene (4).
+# " "hola" in traducciones.keys()": Para saber si hay una clave en particular (True).
+#                                   NOTA: podría no haber puesto el ".keys()".
+# " "hello" in traducciones.values()": para saber si un valor en particular (True).
+#                                      NOTA: si no pongo ".values()" me devuelve False porque buscaría en las keys.
+# " "Sofía" in equipo.values()": Devuelve FALSE porque dentro de "equipo" los values son listas y esta operación
+#                                busca un value string con el valor que asigné. "Sofía" está contenida por la lista.
+# " calendario["enero"] ": devuelve "1"; OBTIENE UN VALOR. Si la clave no existe, devuelve un error.
+#           ó
+# " calendario.get("enero" [,valor]) ": Devuelve "1"; OBTIENE UN VALOR. La diferencia es que NO devuelve ERROR.
+#                                       Lo de  "[,valor]" es opciónal; se puede agregar un valor específicos que
+#                                       querramos que devuelva (iría sin los "[]", sólo la coma), si es que la clave
+#                                       (en este caso "enero") no existe. Si no pongo el valor, y la clave no existe,
+#                                       no retorna nada.
+# " calendario["enero"] = 01 ": MODIFICA un VALOR. En vez de "1" ahora es "01". NOTA: La clave es INMUTABLE.
+# " calendario["abril"] = 4 ": Asigna NUEVA CLAVE-VALOR.
+# " calendario.update({ "mayo":5, "junio":6, "julio":7 }) ": Agrega VARIAS CLAVE-VALOR nuevas.
+# " del calendario["enero"] ": ELIMINA CLAVE-VALOR.
+# " calendario.clear() ": VACÍA todo el diccionario.
+
+# MÁS EJEMPLOS:
+
+# " equipo[9][1] ": Devuelve "9" (la edad). El "[1]" es porque el valor es de tipo lista, y si quiero acceder a un
+#                   campo de la misma, lo hago como a cualquier lista común.
+# " traducciones.get("reloj", "no existe esa palabra") ": Devuelve "no existe esa palabra".
+# " traducciones.get("hola", "hi") ": Devuelve 'hello'.
+# " equipo[2][1] = 10 ": asigna el 10 pisando el 9 (la edad de Lucía).
+# " traducciones["reloj"] = "clock" ": Asigno una nueva clave-valor.
+# " equipo[5] = "Marcela" ": En un diccionario, con todas listas como valores, agrego una nueva clave-valor, pero
+# ahora el valor es un STRING y lo asigna sin ningún problema.
+
+E = { 1:"a", "prueba":[1,2,3,5], (4,5):3 }
+
+# "1 in E.values()": Retorna "False". "in" es un operador que retorna un valor booleano e indica la PERTENENCIA.
+#                    Acá estoy intentando averiguar si "1" está entre los valores del diccionario, y como los
+#                    valores de estos se miden como PARES clave-valor, el "1" por si solo no se considera un
+#                    elemento del mismo. No importa que aparezca dentro de los valores (como en la lista) o como
+#                    clave por si solo.
+
+#----------------------------------------------------------------------------------------------------------------
+
+# 54) DICCIONARIO
+# Escribir un programa que procese strings ingresados por el usuario. La lectura finaliza cuando se hayan procesado 
+# 50 strings. Al finalizar, informar la cantidad total de ocurrencias de cada carácter, en todos los strings 
+# ingresados. Ejemplo: "r":5, "%":3, "a":8, "9":1.
+# ¿Cómo se podrían informar las ocurrencias de las letras del alfabeto únicamente, incluyendo el valor 0 para las 
+# letras que no aparecieron?
+
+contadores={}
+for i in range(50):
+   cadena=input("Cadena de caracteres: ")
+   for caracter in cadena:
+       if caracter not in contadores:
+           contadores[caracter]=1
+       else:
+           contadores[caracter]+=1
+print("Frecuencia de cada carácter")
+for caracter, cantidad in contadores.items():
+   print(caracter, ": ", cantidad)
+
+#Para contabilizar sólo letras (mayúsculas y minúsculas por separado):
+contadores={}
+alfabeto="abcdefghijklmnñopqrstuvwxyz"
+for letra in alfabeto+alfabeto.upper():
+    contadores[letra]=0
+for i in range(50):
+   cadena=input("Cadena de caracteres: ")
+   for caracter in cadena:
+       if caracter.lower() in alfabeto:
+           contadores[caracter]+=1
+print("Frecuencia de cada letra")
+for caracter, cantidad in contadores.items():
+   print(caracter, ": ", cantidad)
+
+#----------------------------------------------------------------------------------------------------------------
+
+# TUPLAS:
+
+
+# Muy similares a las listas:
+
+#       Elementos ordenador por índice.
+#       Los elementos pueden repetirse.
+#       Elementos heterogéneos.
+#       Admiten "rebanadas".
+#       Se iteran de la misma forma.
+
+# La diferencia es que son inmutables. No se pueden cambiar (ni modificar, eliminar o agregar) elementos.
+# Por lo tanto NO necesitan guardar espacio extra en la memoria como las listas.
+
+
+# Creacion de una Tupla (parentesis opcionales):
+
+# tupla_vacia = ()
+# tupla_vacia2 = tuple()
+# tupla_con_elementos = 104, "hola", 0.8, True
+# tupla_desde_string = ("ema",)     => Devuelve: ('ema',)
+# tupla_desde_string2 = tuple("ema")   => Devuelve: ('e','m','a') 
+# tupla_desde_rango = tuple(range(5))
+
+# Acciones posibles con Tuplas:
+
+# " dir(tuple) ": veo qué acciones puedo tomar.
+# " tupla1 = tuple(C) ": Si "C" es una LISTA, ahora "tupla1" va a tener sus mismos elementos, pero formando
+#                        una tupla (o sea, delimitados por "()").
+# " nueva = (A,)+tupla_desde_string[1:] ": devuelve "('A','m','a')". Es la forma de agregar algo a una tupla,
+#                                          concatenando dos tuplas y aplicando "rebanadas".
+# A = [1,2,3]
+# B = (A,)  => "B" devuelve: ([1,2,3],)
+# A.append(4) => "B" devuelve: ([1,2,3,4],) . Esto pasa porque la lista está guardada en una variable ("A").
+#                                             "B", en sí, no cambió.
