@@ -1426,3 +1426,75 @@ claves = list(b.keys) # Convierto a lista las claves del diccionario.
     for clave in claves:
         if b[clave] == []:
             del b[clave]
+
+#----------------------------------------------------------------------------------------------------------------
+
+# TEORIA DE LA DOCUMENTACION OFICIAL
+
+
+
+#  The IF statement:
+
+ if_stmt ::= "if" assignment_expression ":" suite
+             ("elif" assignment_expression ":" suite)*
+             ["else" ":" suite]
+
+
+
+# The WHILE statement:
+
+while_stmt ::=  "while" assignment_expression ":" suite
+                ["else" ":" suite]
+
+
+
+# The FOR statement:
+
+for_stmt ::=  "for" target_list "in" expression_list ":" suite
+              ["else" ":" suite]
+
+
+
+# The TRY statement:
+
+try_stmt  ::=  try1_stmt | try2_stmt
+try1_stmt ::=  "try" ":" suite
+               ("except" [expression ["as" identifier]] ":" suite)+
+               ["else" ":" suite]
+               ["finally" ":" suite]
+try2_stmt ::=  "try" ":" suite
+               "finally" ":" suite
+
+
+
+# The WITH statement:
+
+with_stmt ::=  "with" with_item ("," with_item)* ":" suite
+with_item ::=  expression ["as" target]
+
+
+
+# FUNCTION definitions:
+
+funcdef ::=  [decorators] "def" funcname "(" [parameter_list] ")"
+             ["->" expression] ":" suite
+decorators                ::=  decorator+
+decorator                 ::=  "@" dotted_name ["(" [argument_list [","]] ")"] NEWLINE
+dotted_name               ::=  identifier ("." identifier)*
+parameter_list            ::=  defparameter ("," defparameter)* "," "/" ["," [parameter_list_no_posonly]]
+                                 | parameter_list_no_posonly
+parameter_list_no_posonly ::=  defparameter ("," defparameter)* ["," [parameter_list_starargs]]
+                               | parameter_list_starargs
+parameter_list_starargs   ::=  "*" [parameter] ("," defparameter)* ["," ["**" parameter [","]]]
+                               | "**" parameter [","]
+parameter                 ::=  identifier [":" expression]
+defparameter              ::=  parameter ["=" expression]
+funcname                  ::=  identifier
+
+ 
+
+# CLASS definition:
+
+classdef    ::=  [decorators] "class" classname [inheritance] ":" suite
+inheritance ::=  "(" [argument_list] ")"
+classname   ::=  identifier
