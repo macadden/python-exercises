@@ -1257,21 +1257,172 @@ for caracter, cantidad in contadores.items():
 
 # Creacion de una Tupla (parentesis opcionales):
 
-# tupla_vacia = ()
-# tupla_vacia2 = tuple()
-# tupla_con_elementos = 104, "hola", 0.8, True
-# tupla_desde_string = ("ema",)     => Devuelve: ('ema',)
-# tupla_desde_string2 = tuple("ema")   => Devuelve: ('e','m','a') 
-# tupla_desde_rango = tuple(range(5))
+ tupla_vacia = ()
+ tupla_vacia2 = tuple()
+ tupla_con_elementos = 104, "hola", 0.8, True
+ tupla_desde_string = ("ema",)     # => Devuelve: ('ema',)
+ tupla_desde_string2 = tuple("ema")  # => Devuelve: ('e','m','a') 
+ tupla_desde_rango = tuple(range(5))
 
 # Acciones posibles con Tuplas:
 
-# " dir(tuple) ": veo qué acciones puedo tomar.
-# " tupla1 = tuple(C) ": Si "C" es una LISTA, ahora "tupla1" va a tener sus mismos elementos, pero formando
-#                        una tupla (o sea, delimitados por "()").
-# " nueva = (A,)+tupla_desde_string[1:] ": devuelve "('A','m','a')". Es la forma de agregar algo a una tupla,
-#                                          concatenando dos tuplas y aplicando "rebanadas".
-# A = [1,2,3]
-# B = (A,)  => "B" devuelve: ([1,2,3],)
-# A.append(4) => "B" devuelve: ([1,2,3,4],) . Esto pasa porque la lista está guardada en una variable ("A").
-#                                             "B", en sí, no cambió.
+  dir(tuple) #veo qué acciones puedo tomar.
+  tupla1 = tuple(C) # Si "C" es una LISTA, ahora "tupla1" va a tener sus mismos elementos, pero formando
+#                     una tupla (o sea, delimitados por "()").
+ nueva = (A,)+tupla_desde_string[1:] # devuelve "('A','m','a')". Es la forma de agregar algo a una tupla,
+#                                      concatenando dos tuplas y aplicando "rebanadas".
+ A = [1,2,3]
+ B = (A,)  # => "B" devuelve: ([1,2,3],)
+ A.append(4) # => "B" devuelve: ([1,2,3,4],) . Esto pasa porque la lista está guardada en una variable ("A").
+#                                              "B", en sí, no cambió.
+
+#----------------------------------------------------------------------------------------------------------------
+
+# RECOMENDACIONES
+
+
+# Usar estructuras repetitivas para imprimir listas y diccionarios:
+
+lista = [ 1, 2, 3, 4 ]
+for elemento in lista:
+    print(elemento)
+
+
+articulos = { 154:["jabón en polvo","limpieza", True],
+              248:["talco","cosmetica", False],
+              199:["cera para pisos", "limpieza", True] }
+for clave, valor in articulos.items()  # Imprimir de esta manera para aclararle las cosas al usuario.
+    print("Código:", clave)
+    print("Descripción:",valor[0])
+    print("Rubro:", valor[1])
+    if valor[2]:             # Se recomienda imprimir un booleando con un "if".
+        print("Hay stock")
+    else:
+        print("Agotado")
+    print("--------")
+
+
+
+# Considerar siempre los extremos de una lista o los casos "especiales" (como el de la lista vacía).
+
+liista = [1,3,4,4,6,7,7,8,0,9,9,9]
+
+for i in range(len(liista)-1): 
+    if liista[i]==liista[i+1]:
+        print(liista[i]) # imprime elementos que son iguales a su adyacente.
+# "len()" va desde 0 hasta 11, pero cuando estoy en el "if" con "i=11" (última posición) e intento acceder
+# a "i+1", me voy de rango y devuelve ERROR; por eso uso "-1" en el "range()".
+
+
+
+#Considerar que quizás sólo queriamos imprimir una vez a los nros que se repiten, pero en el caso del 9 lo
+#estaría imprimiendo dos veces. Este es un caso espacial a considerar.
+
+
+
+# NO buscar en una estructura a un elemento X que sólo puede estar en una estructura anidada (Ejemplo:
+# buscar un elemento como VALOR en un diccionario, cuando en realidad está en una lista que se encuentra
+# cumpliendo el rol de VALOR en el diccionario). Ejemplo de lo que sí hay que hacer:
+
+def empleadoExiste(empleados,nombre):
+    for datos in empleados.values():
+        if datos[0] == nombre:
+            return True
+    return False     # Importante acordarse de esta linea.
+
+empleados = { 100:["Jorge","RRHH"],
+              200:["Ana","Ventas"],
+              300:["Guadalupe", "Administración"] }
+
+nombree=input("Nombre de empleado:")
+if not empleadoExiste(empleados, nombree): #Evaluo un BOOLEANO (la función).
+    print("El empleado no se encuentra en la lista")
+
+
+
+# NO iterar para buscar la clave en un diccionario.
+
+# Si la clave existe, se puede acceder de manera directa. Ejemplo:
+
+codigo = input("código a buscar: ")
+if codigo in empleados.keys():
+    print("el nombre es:" empleados[codigo])
+
+
+
+# NO querer imprimir valores de un diccionario usando nombres de variables Ejemplo:
+
+def cargarDatos(diccionario):
+    dni = int(input("DNI (ingrese 0 para salir): "))
+    while dni != 0:
+        nombre = input("Nombre: ")
+        domicilio = input("Domicilio: ")
+        telefono = input("Teléfono: ")
+        diccionario[dni] = [nombre,domicilio,telefono] # Aclaro que "dni" es la clave. 
+        dni = int(input("DNI (ingrese 0 para salir): "))
+    return diccionario
+
+def imprimirDatos(diccionario):
+    for clave, valor in diccionario.items():
+        print("-DNI:",clave, "-NOMBRE:",valor[0], "-DOMICILIO:",valor[1], "-TELÉFONO:",valor[2]) 
+        # Acá NOOOO tengo que poner "dni", "nombre", "domicilio", etc.
+        # como variables directas para imprimir.
+
+clientes = { 21069486:["Gastón", "chubaca 444", 29485733]
+             68365035:["Tomás","chikaka 098", 458477738]
+             12098593:["Camila", "hermosa 221", 33939494] }
+clientes = cargarDatos(clientes) #PISA la variable anterior "clientes" con un diccionario nuevo.
+imprimirDatos(clientes)
+
+# NO cargar todos los datos en una misma lista cuando deberían ser diferentes.
+# Por ejemplo, cuando tengo un diccionario que su VALOR es una lista.
+
+def cargarMercaderias(mercaderias):
+    codigo = int(input("Codigo: "))
+    while codigo != 0:
+        articulo = []      # esta es la clave; definir la lista VACÍA dentro del bucle para cuando termino
+                           # de cargar un artículo, la liste se VACÍE para que el próximo articulo arranque
+                           # desde 0 y sin ningún dato del artículo anterior.
+        descripcion = input("Descripción: ")
+        articulo.append(descripcion)
+        rubro = input("Rubro: ")
+        articulo.append(rubro)
+        mercaderias[codigo] = articulo
+        codigo = int(input("Código: "))
+    return mercaderias
+# Otra forma de hacerlo sería NO arrancar con una lista vacía la cual ir cargando; es decir, elimino "articulo = []"
+# junto a sus respectivas cargas "articulo.append(descripcion)" y "articulo.append(rubro)" para darle lugar a la linea
+# "mercaderias[codigo] = [descripcion,rubro]" y cree la lista ahí mismo.
+
+productos = {}
+productos = cargaMercaderias(productos)   #PISA la variable anterior "clientes" con un diccionario nuevo.
+for codigo, datos in productos.items():
+    print("-Código:", codigo,"-Descripción:", datos[0],"-Rubro:", datos[1])
+
+
+
+# NO modificar la cantidad de elementos de una estructura DURANTE su iteración.
+# EJEMPLO:
+
+a = [1,2,3,4]
+
+for i in range(len(a)):
+    if i == 2:
+        del a[3] # NOOOO HACER ESTO; devolvería un error porque querría usar un índice fuera del rango.
+    print(a[i])
+
+# OTRO EJEMPLO:
+
+b = {"a": [1,2,3], "b": [], "c":[8,6], "d": [], "e":[4]}
+    for clave in b.keys():
+        if b[clave] == []:
+            del b[clave] # NOOOO HACER ESTO; devolvería un error porque querría usar un índice fuera del rango.
+                         # Ya que el diccionario cambió su tamaño en la iteración.
+
+# ESTO SE SOLUCIONARÍA ITERANDO OTRA ESTRUCTURA:
+
+b = {"a": [1,2,3], "b": [], "c":[8,6], "d": [], "e":[4]}
+claves = list(b.keys) # Convierto a lista las claves del diccionario.
+    for clave in claves:
+        if b[clave] == []:
+            del b[clave]
