@@ -109,10 +109,10 @@ def lenUltimaPalabra(cadena):
 #Función que debería ser creada en un archivo aparte "funciones.py"
 # recibe un nro, no importa si representa un DNI u otra cosa.
 def primerosTresDigitos(numero):
-    # mientras el nro tenga 3 dígitos ("999" es el nro más grande de 3 dígitos).
+    # mientras el nro NO tenga 3 dígitos ("999" es el nro más grande de 3 dígitos).
     while numero >= 1000:
-        # elimino un nro y me quedo con la parte entera en la línea de abajo.
-        numero = numero/10
+      # elimino un nro y me quedo con la parte entera en la línea de abajo.
+        numero = numero//10
     return int(numero)  # Me quedo con la parte entera del nro.
 
 
@@ -120,8 +120,8 @@ def primerosTresDigitos(numero):
 def obtenerIdentificador(nombre, dni):
     nombre = nombre.strip()  # "strip()" elimina espacios del ppio y el final.
     # Desde el ppio hasta que encuentre el 1er espacio, pero obtiene hasta
+    # un caracter antes, y es lo que quiero; el "0" podría no haberlo puesto.
     i = nombre[0:nombre.find(" ")]
-    #un caracter antes, y es lo que quiero; el "0" podría no haberlo puesto.
     # El nro  de "lenUltima...()" lo paso a STRING para concatenar con el nombre.
     i = i+str(lenUltimaPalabra(nombre))
     i = i+str(primerosTresDigitos(dni))
@@ -339,8 +339,8 @@ printRow2(9, 9)  # Matriz 9x9
 
 #----------------------------------------------------------------------------------------------------------------
 
-# 13) RECURSIÓN  ¿¿¿???
-# Imprimir el resultado del producto entre los nros de una lista, de manera recursiva.
+# 13) RECURSIÓN
+# Imprimir, de manera recursiva, el resultado del producto entre los nros de una lista.
 
 nums = [2, 10, 4]
 print(f"numbers: {nums}")
@@ -359,10 +359,10 @@ print(f"product: {productL}")
 #----------------------------------------------------------------------------------------------------------------
 
 # 14) RECURSIÓN
-# Imprimir una lista (¿array en realidad?) de atrás para adelante recursivamente. (imprimir el antes y el después)
+# Imprimir una lista de atrás para adelante recursivamente. (imprimir el antes y el después)
 
 
-def reverseList(data, low, high):  # "low" y "high" dos las dos posiciones iniciales del array
+def reverseList(data, low, high):  # "low" y "high" dos las dos posiciones iniciales de la lista
     if low < high:
         newLow = data[low]
         data[low] = data[high]
