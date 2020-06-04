@@ -495,7 +495,7 @@ print(rango24)
 cadena1 = input("ingrese 1°cadena: ")
 cadena2 = input("ingrese 2°cadena: ")
 print(cadena2[:2] + cadena1[2:] + "" + cadena1[:2] + cadena2[2:])
-# "[:2]" = empieza en el inicio y termina en el 2do caracter; "[2:]" = empieza en el 2do caract (excluyéndolo).
+# "[:2]" = empieza en el inicio (ext. cerrado) y termina en el 2do caracter (ext. abierto); "[2:]" = arranca desde el 3er caracter.
 # Esto se basa en el operador slice (rodaja) cuya sintaxis general es: "iterable [ inicio : fin : paso ]"
 
 #----------------------------------------------------------------------------------------------------------------
@@ -621,16 +621,16 @@ def es_vocal (x):
 def inversa(cadena32):
     invertida=""
     cont = len(cadena32)
-    indice = -1 # ¿Por qué tiene que ser -1 para posicionarse en el final de la cadena?
+    indice = -1 # Tiene que ser -1 para posicionarse en el final de la cadena
     while cont >= 1:
         invertida += cadena32[indice]
-        indice = indice + (-1)
+        indice = indice + (-1) #Recorre de atrás para adelante
         cont -= 1
     return invertida
 
 #----------------------------------------------------------------------------------------------------------------
 
-# 33) ¿Está bien?
+# 33)
 # Definir una función "es_palindromo()" que reconozca palíndromos. Ejemplo: "es_palíndromo("radar")" devolvería TRUE.
 
 #Defino la función del punto "32)"
@@ -646,9 +646,9 @@ def es_palindromo (cadena33):
         else:
             print("False")
             break
+    if cont33 == len(cadena33): #Si el contador = cantidad de letras de la cadena es porque todas las letras son iguales
+    print("True") # ó "return True"
 
-if cont33 == len(cadena33): #Si el contador = cantidad de letras de la cadena es porque todas las letras son iguales
-    print("True")
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -685,9 +685,9 @@ def procedimiento (lista):
 def mas_larga(lista):
     inicio36 = 0
     for i in lista:
-        if i > inicio36:
-        inicio36 = i
-        return inicio
+        if len(i) > inicio36:
+        inicio36 = len(i)
+    return inicio36
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -711,7 +711,7 @@ def filtrar_palabras(lista,n):
 def c_mayus (cadena):
     cont = 0
     for i in cadena:
-        if i !=i.lower(): # "lower()" convierte una cadena en minúsculas.
+        if i != i.lower(): # "lower()" convierte una cadena en minúsculas.
             cont += 1
 
 print("La cadena tiene",cont,"mayuscula(s)")
@@ -725,15 +725,10 @@ def aDecimal(numeroBin):
     decimal = 0
     exp = len(numeroBin)-1  # ¿Por qué -1?
     for i in numeroBin:
-        decimal += (int(i) * 2**(exp))
+        decimal += (int(i) * 2**(exp))   # ¿2**(exp)?
         exp = exp - 1
     return decimal
 
-#----------------------------------------------------------------------------------------------------------------
-
-# Para ingreso de nombre de una persona:
-
-nombre2 = raw_input("Nombre de la persona: ") # "raw_input" hará que Python almacene lo que sea dentro de un String.
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -742,14 +737,14 @@ nombre2 = raw_input("Nombre de la persona: ") # "raw_input" hará que Python alm
 # dar a elegir al usuario la letra que quiera buscar.
 
 def main():
-    x = input("¿Cuántos nombres quiere ingresar?: ")
+    x = int(input("¿Cuántos nombres quiere ingresar?: "))
     lista = []
     for i in range(x):
-        a = raw_input("ingrese el nombre: ")
+        a = input("ingrese el nombre: ")
         list.append(a) #agrega al FINAL de la lista.
     
     print("")
-    comienzo = raw_input("¿Con qué letra empieza el nombre?: ")
+    comienzo = input("¿Con qué letra empieza el nombre?: ")
     cont = 0
     for i in lista:
         if i[0] == comienzo.lower() or i[0] == comienzo.upper():
