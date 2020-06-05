@@ -1093,7 +1093,7 @@ for anio in range(anioInicio, anioFin+1):
 
 # EJEMPLOS:
 
-traducciones = {"hola":"hello","adiós":"bye","día":"day","noche":"night"}
+traducciones = { "hola":"hello", "adiós":"bye", "día":"day", "noche":"night" }
 traducciones.keys() #Devuelve: dict_keys(['hola','adiós','día','noche']); es una lista que contiene los strings.
 
 for clave in traducciones.keys(): #Está iterando por una lista ("traducciones.keys()"), así que imprimo la clave.
@@ -1142,7 +1142,7 @@ meses = dict(calendario) #Si ejecutase "meses" devolvería: " {'enero': 1, 'febr
 
 
 # Diccionario para almacenar los datos de un equipo deportivo de niñas. Uso de clave los nros de camiseta,
-# y como valores listas en las cuales voy a poner: nombre, edad y años que lleva en el equipo.
+# y como valores listas, en las cuales voy a poner: nombre, edad y años que lleva en el equipo.
 equipo = {8: ["Melina", 8, 3], 2: ["Lucía", 9, 1], 6: ["María", 7, 2], 9: ["Sofía", 9, 1]}
 
 # La cuestión de conocer cómo iterar en un diccionario es para cuando pase a otro lenguaje de programación.
@@ -1159,45 +1159,48 @@ for datos in equipo.values():
 
 # OPERACIONES CON DICCIONARIOS:
 
-# "dir(dict)": Muestra operaciones posibles con diccionarios.
-# "len(equipo)": Cuantos PARES de elementos tiene (4).
-# " "hola" in traducciones.keys()": Para saber si hay una clave en particular (True).
+ dir(dict)     # Muestra lista de operaciones posibles con diccionarios.
+ len(equipo)    # Cuantos PARES de elementos tiene (4).
+ "hola" in traducciones.keys()      # Para saber si hay una clave en particular (True).
 #                                   NOTA: podría no haber puesto el ".keys()".
-# " "hello" in traducciones.values()": para saber si un valor en particular (True).
+ "hello" in traducciones.values()      # Para saber si un valor en particular (True).
 #                                      NOTA: si no pongo ".values()" me devuelve False porque buscaría en las keys.
-# " "Sofía" in equipo.values()": Devuelve FALSE porque dentro de "equipo" los values son listas y esta operación
-#                                busca un value string con el valor que asigné. "Sofía" está contenida por la lista.
-# " calendario["enero"] ": devuelve "1"; OBTIENE UN VALOR. Si la clave no existe, devuelve un error.
+ "Sofía" in equipo.values()  # Devuelve FALSE porque dentro de "equipo" los values son listas y esta operación
+#                              busca un value string con el valor que asigné. "Sofía" está contenida por la lista.
+ calendario["enero"]    # Devuelve "1"; OBTIENE UN VALOR. Si la clave no existe, devuelve un error.
 #           ó
-# " calendario.get("enero" [,valor]) ": Devuelve "1"; OBTIENE UN VALOR. La diferencia es que NO devuelve ERROR.
-#                                       Lo de  "[,valor]" es opciónal; se puede agregar un valor específicos que
-#                                       querramos que devuelva (iría sin los "[]", sólo la coma), si es que la clave
-#                                       (en este caso "enero") no existe. Si no pongo el valor, y la clave no existe,
-#                                       no retorna nada.
-# " calendario["enero"] = 01 ": MODIFICA un VALOR. En vez de "1" ahora es "01". NOTA: La clave es INMUTABLE.
-# " calendario["abril"] = 4 ": Asigna NUEVA CLAVE-VALOR.
-# " calendario.update({ "mayo":5, "junio":6, "julio":7 }) ": Agrega VARIAS CLAVE-VALOR nuevas.
-# " del calendario["enero"] ": ELIMINA CLAVE-VALOR.
-# " calendario.clear() ": VACÍA todo el diccionario.
+ calendario.get("enero" [,valor])   # Devuelve "1"; OBTIENE UN VALOR. La diferencia es que NO devuelve ERROR.
+#                                     Lo de  "[,valor]" es opciónal; se puede agregar un valor específico que
+#                                     querramos que devuelva (iría sin los "[]", sólo la coma), si es que la clave
+#                                     (en este caso "enero") no existe. Si no pongo el valor, y la clave no existe,
+#                                     no retorna nada.
+ calendario["enero"] = 01   # MODIFICA un VALOR. En vez de "1" ahora es "01". NOTA: La clave es INMUTABLE.
+ calendario["abril"] = 4    # Asigna NUEVA CLAVE-VALOR.
+ calendario.update({ "mayo":5, "junio":6, "julio":7 })   # Agrega VARIAS CLAVE-VALOR nuevas.
+ del calendario["enero"]    # ELIMINA CLAVE-VALOR.
+ calendario.clear()     # VACÍA todo el diccionario.
 
 # MÁS EJEMPLOS:
 
-# " equipo[9][1] ": Devuelve "9" (la edad). El "[1]" es porque el valor es de tipo lista, y si quiero acceder a un
-#                   campo de la misma, lo hago como a cualquier lista común.
-# " traducciones.get("reloj", "no existe esa palabra") ": Devuelve "no existe esa palabra".
-# " traducciones.get("hola", "hi") ": Devuelve 'hello'.
-# " equipo[2][1] = 10 ": asigna el 10 pisando el 9 (la edad de Lucía).
-# " traducciones["reloj"] = "clock" ": Asigno una nueva clave-valor.
-# " equipo[5] = "Marcela" ": En un diccionario, con todas listas como valores, agrego una nueva clave-valor, pero
-# ahora el valor es un STRING y lo asigna sin ningún problema.
+ equipo[9][1]   # Devuelve "9" (la edad). El "[1]" es porque el valor es de tipo lista, y si quiero acceder a un
+#                 campo de la misma, lo hago como a cualquier lista común.
+ traducciones.get("reloj", "no existe esa palabra")     # Devuelve "no existe esa palabra" xq "reloj" no existe.
+ traducciones.get("hola", "hi")     # Devuelve 'hello'.
+ equipo[2][1] = 10      # asigna el 10 pisando el 9 (la edad de Lucía).
+ traducciones["reloj"] = "clock"    # Asigno una nueva clave-valor.
+ equipo[5] = "Marcela"      # En un diccionario, con todas listas como valores, agrego una nueva clave-valor, pero
+#                             ahora el valor es un STRING y lo asigna sin ningún problema y quedaría:
+equipo = {8: ["Melina", 8, 3], 2: ["Lucía", 9, 1], 6: ["María", 7, 2], 9: ["Sofía", 9, 1], 5: "Marcela"}
+
+
 
 E = { 1:"a", "prueba":[1,2,3,5], (4,5):3 }
 
-# "1 in E.values()": Retorna "False". "in" es un operador que retorna un valor booleano e indica la PERTENENCIA.
-#                    Acá estoy intentando averiguar si "1" está entre los valores del diccionario, y como los
-#                    valores de estos se miden como PARES clave-valor, el "1" por si solo no se considera un
-#                    elemento del mismo. No importa que aparezca dentro de los valores (como en la lista) o como
-#                    clave por si solo.
+1 in E.values()     # Retorna "False". "in" es un operador que retorna un valor booleano e indica la PERTENENCIA.
+#                     Acá estoy intentando averiguar si "1" está entre los valores del diccionario, y como los
+#                     valores de estos se miden como PARES clave-valor, el "1" por si solo no se considera un
+#                     elemento del mismo. No importa que aparezca dentro de los valores (como en la lista) o como
+#                     clave por si solo.
 
 #----------------------------------------------------------------------------------------------------------------
 
