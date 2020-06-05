@@ -925,7 +925,7 @@ print("Suma de los dígitos:", suma)
 # repetir lo del ejercicio 47), pero además contar los números pares ingresados.
 
 pares = 0
-ñ = int(input("Número(-1 para terminar el programa): "))
+ñ = int(input("Ingrese número (-1 para terminar el programa): "))
 while ñ != -1:
     if (ñ % 2) == 0:
         pares += 1
@@ -935,7 +935,8 @@ while ñ != -1:
         digito = ñ % 10  # obtengo el último dígito.
         suma += digito
         ñ = ñ//10  # elimino el último dígito para la próxima iteración.
-print("Suma de los dígitos:", suma)
+print(f"Suma de los dígitos: {suma}. 
+        La cant. de nros pares ingrsados es: {pares}")
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -971,15 +972,15 @@ print("Total de dígitos impares:", totalImpares)
 # WHILE condicion1:
 #   bloque a repetir
 #   IF condicion2:
-#       BREAK            Corta el bucle (IF) y el resto del bloque (WHILE) no se ejecuta. Pasa al resto del programa.
-#   *resto del bloque*
+#       BREAK            Corta el bucle (IF) y el resto del bloque (WHILE) no se ejecuta ¡Pasa al resto del programa!
+#   *resto del bloque*   Lo mísmo pasaría si el bloque repetitivo fuese un FOR.
 # *resto del programa*
 #
 #
 # WHILE condicion1:
 #   bloque a repetir
 #   IF condicion2:
-#       CONTINUE        Vuelve a evaluar la condicion1. Saltea el resto del bloque, pero no va al resto del programa.
+#       CONTINUE        ¡Vuelve a evaluar la condicion1! Saltea el resto del bloque, pero no va al resto del programa.
 #   *resto del bloque*
 # *resto del programa*
 
@@ -1023,7 +1024,7 @@ while i != len(frase):
 #----------------------------------------------------------------------------------------------------------------
 
 # 52)
-# Escribir un programa que solicite el ingreso de una cantidad indeterminada de números maores que 1, finalizando
+# Escribir un programa que solicite el ingreso de una cantidad indeterminada de números mayores que 1, finalizando
 # cuando se reciba un cero.
 # Imprimir la cantidad total de números primos ingresados.
 
