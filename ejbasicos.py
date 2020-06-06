@@ -1386,12 +1386,12 @@ def cargarMercaderias(mercaderias):
         articulo.append(descripcion)
         rubro = input("Rubro: ")
         articulo.append(rubro)
-        mercaderias[codigo] = articulo
+        mercaderias[codigo] = articulo # El valor del diccionario es la lista.
         codigo = int(input("Código: "))
     return mercaderias
 # Otra forma de hacerlo sería NO arrancar con una lista vacía la cual ir cargando; es decir, elimino "articulo = []"
-# junto a sus respectivas cargas "articulo.append(descripcion)" y "articulo.append(rubro)" para darle lugar a la linea
-# "mercaderias[codigo] = [descripcion,rubro]" y cree la lista ahí mismo.
+# junto a sus respectivas cargas "articulo.append(descripcion)" y "articulo.append(rubro)" para darle lugar a la linea:
+  mercaderias[codigo] = [descripcion, rubro] # y cree la lista ahí mismo.
 
 productos = {}
 productos = cargaMercaderias(productos)   #PISA la variable anterior "clientes" con un diccionario nuevo.
@@ -1475,8 +1475,8 @@ with_item ::=  expression ["as" target]
 
 # FUNCTION definitions:
 
-funcdef ::=  [decorators] "def" funcname "(" [parameter_list] ")"
-             ["->" expression] ":" suite
+funcdef                   ::=  [decorators] "def" funcname "(" [parameter_list] ")"
+                                ["->" expression] ":" suite
 decorators                ::=  decorator+
 decorator                 ::=  "@" dotted_name ["(" [argument_list [","]] ")"] NEWLINE
 dotted_name               ::=  identifier ("." identifier)*
