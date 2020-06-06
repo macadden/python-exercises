@@ -1244,11 +1244,11 @@ for caracter, cantidad in contadores.items():
 
 # Muy similares a las listas:
 
-#       Elementos ordenador por índice.
-#       Los elementos pueden repetirse.
-#       Elementos heterogéneos.
-#       Admiten "rebanadas".
-#       Se iteran de la misma forma.
+#    Elementos ordenador por índice.
+#    Los elementos pueden repetirse.
+#    Elementos heterogéneos.
+#    Admiten "rebanadas".
+#    Se iteran de la misma forma.
 
 # La diferencia es que son inmutables. No se pueden cambiar (ni modificar, eliminar o agregar) elementos.
 # Por lo tanto NO necesitan guardar espacio extra en la memoria como las listas.
@@ -1345,7 +1345,7 @@ if not empleadoExiste(empleados, nombree): #Evaluo un BOOLEANO (la función).
 
 codigo = input("código a buscar: ")
 if codigo in empleados.keys():
-    print("el nombre es:" empleados[codigo])
+    print("el nombre es:" empleados[codigo][0]) # ¿El "[0]" va? Lo agregué yo.
 
 
 
@@ -1370,7 +1370,7 @@ def imprimirDatos(diccionario):
 clientes = { 21069486:["Gastón", "chubaca 444", 29485733]
              68365035:["Tomás","chikaka 098", 458477738]
              12098593:["Camila", "hermosa 221", 33939494] }
-clientes = cargarDatos(clientes) #PISA la variable anterior "clientes" con un diccionario nuevo.
+clientes = cargarDatos(clientes) # PISA la variable anterior "clientes" con un diccionario nuevo.
 imprimirDatos(clientes)
 
 # NO cargar todos los datos en una misma lista cuando deberían ser diferentes.
