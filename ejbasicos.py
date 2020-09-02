@@ -10,6 +10,16 @@ DEF identificador(parametros):   #Para secuencia ordenada de elementos.
     #valor de retorno
 
 """
+7%2
+# 7%(5//2) = 1  ==> "//" me quedo con la parte ENTERA; "%" me quedo con el RESIDUO
+#
+#
+#
+#
+#
+#
+#
+# ----------------------------------------------------------------------------------
 # 1)
 # Realizar un programa que solicite:
 #a)El nombre del alumno.
@@ -53,11 +63,13 @@ resp = input()
 def DNIvalido(dni):
     cantidad = 0
     while dni != 0:
-        cantidad = +1  # Al final tendrá la cantidad de dígitos del DNI.
+        cantidad += 1  # Al final tendrá la cantidad de dígitos del DNI.
         # Si 45567183//10 => 4556718,3 y me quedo con la parte entera => elimino un nro porque "//" se saca de encima el decimal.
         dni = dni//10
     # Si se dan alguno de estos casos devuelve "TRUE", si no devuelve "False".
     return cantidad == 7 or cantidad == 8
+
+DNIvalido(12345678)
 
 #A esta función la puedo llamar desde el intérprete interactivo de Python.
 
@@ -84,6 +96,8 @@ def lenUltimaPalabra(cadena):
             if cadena[i] == " " and i < (longitud-1) and cadena[i+1] != " ":
                 cantidad = 0  # pongo cantidad en cero porque hay más palabras
     return cantidad
+
+lenUltimaPalabra("se viene aaaaaaca")
 
 #------------------------------------------------------------------------------------------------------------------
 
@@ -362,7 +376,7 @@ print(f"product: {productL}")
 # Imprimir una lista de atrás para adelante recursivamente. (imprimir el antes y el después)
 
 
-def reverseList(data, low, high):  # "low" y "high" dos las dos posiciones iniciales de la lista
+def reverseList(data, low, high):  # "low" y "high" las dos posiciones iniciales de la lista
     if low < high:
         newLow = data[low]
         data[low] = data[high]
