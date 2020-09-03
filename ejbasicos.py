@@ -1275,7 +1275,7 @@ for caracter, cantidad in contadores.items():
  tupla_con_elementos = 104, "hola", 0.8, True
  tupla_desde_string = ("ema",)     # => Devuelve: ('ema',)
  tupla_desde_string2 = tuple("ema")  # => Devuelve: ('e','m','a') 
- tupla_desde_rango = tuple(range(5))
+ tupla_desde_rango = tuple(range(5)) # => Devuelve: (0, 1, 2, 3, 4)
 
 # Acciones posibles con Tuplas:
 
@@ -1362,8 +1362,12 @@ if codigo in empleados.keys():
     print("el nombre es:" empleados[codigo][0]) # ¿El "[0]" va? Lo agregué yo.
 
 
+    
 
-# NO querer imprimir valores de un diccionario usando nombres de variables Ejemplo:
+
+
+# NO querer imprimir valores de un diccionario usando nombres de variables. 
+# Ejemplo sobre como sí hacerlo:
 
 def cargarDatos(diccionario):
     dni = int(input("DNI (ingrese 0 para salir): "))
@@ -1386,6 +1390,9 @@ clientes = { 21069486:["Gastón", "chubaca 444", 29485733]
              12098593:["Camila", "hermosa 221", 33939494] }
 clientes = cargarDatos(clientes) # PISA la variable anterior "clientes" con un diccionario nuevo.
 imprimirDatos(clientes)
+
+
+
 
 # NO cargar todos los datos en una misma lista cuando deberían ser diferentes.
 # Por ejemplo, cuando tengo un diccionario que su VALOR es una lista.
