@@ -351,6 +351,7 @@ def printRow2(i, j):
 
 printRow2(9, 9)  # Matriz 9x9
 
+
 #----------------------------------------------------------------------------------------------------------------
 
 # 13) RECURSIÓN
@@ -661,7 +662,7 @@ def es_palindromo (cadena33):
             print("False")
             break
     if cont33 == len(cadena33): #Si el contador = cantidad de letras de la cadena es porque todas las letras son iguales
-    print("True") # ó "return True"
+        print("True") # ó "return True"
 
 
 #----------------------------------------------------------------------------------------------------------------
@@ -700,7 +701,7 @@ def mas_larga(lista):
     inicio36 = 0
     for i in lista:
         if len(i) > inicio36:
-        inicio36 = len(i)
+            inicio36 = len(i)
     return inicio36
 
 #----------------------------------------------------------------------------------------------------------------
@@ -861,7 +862,7 @@ else:
 total = 0
 for i in range(101):
     if i % 3 == 0:
-    total = total + i  # es igual a "total += i"
+        total = total + i  # es igual a "total += i"
 
 print("sumatoria:", total)
 
@@ -949,8 +950,7 @@ while ñ != -1:
         digito = ñ % 10  # obtengo el último dígito.
         suma += digito
         ñ = ñ//10  # elimino el último dígito para la próxima iteración.
-print(f"Suma de los dígitos: {suma}. 
-        La cant. de nros pares ingrsados es: {pares}")
+print(f"Suma de los dígitos: {suma}. La cant. de nros pares ingrsados es: {pares}")
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -1446,6 +1446,94 @@ claves = list(b.keys) # Convierto a lista las claves del diccionario.
     for clave in claves:
         if b[clave] == []:
             del b[clave]
+
+#----------------------------------------------------------------------------------------------------------------
+
+nums = [6, 44, 22, 11, 7]
+
+for i in enumerate(nums):
+    print(i)
+
+ # Devuelve: 
+ # (0, 6)
+ # (1, 44)
+ # (2, 22)
+ # (3, 11)
+ # (4, 7)
+
+nums = [6, 44, 22, 11, 7]
+
+if all([i > 5 for i in nums]):
+    print("EVERYONE!!!")
+
+# Devuelve el "print"; podría haber usado "ANY" en vez de "ALL".
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------
+
+
+
+# GENERADORES
+
+# tipo de iterables. A diferencia de las listas NO permiten indexar con índices aritrarios, pero pueden ser iterados
+# con un FOR. Pueden ser creados con funciones o con YIELD.
+# YIELD produce un objeto a la vez => los generadores NO tienen restricciones de memoria como las listas (pueden ser
+# infinitos).
+# Los generadores finitos pueden convertise en listas.
+# Usar generadores da un mejor rendimiento por un uso reducido de memoria.
+
+def make_word():
+    word = ""
+    for ch in "spam":
+        word += ch
+        yield word
+
+print(list(make_word()))
+
+# Devuelve:
+# ['s', 'sp', 'spa', 'spam']
+
+
+def numbers(x):
+    for i in range(x):
+        if i%2 == 0:
+            yield i
+
+print(list(numbers(11)))
+
+# Devuelve:
+# [0, 2, 4, 6, 8, 10]
+
+#----------------------------------------------------------------------------------------------------------------
+
+
+# CONJUNTOS
+
+# Son útiles para pruebas de membresía y eliminación de entradas duplicadas. También cuando los elementos tienen
+# que ser únicos.
+# Estructuras de datos similares a las listas y diccionarios. Difieren de las listas porque NO están ordenadas y
+# NO pueden ser indexados; tampoco pueden tener elementos duplicados.
+# Para agregar algo en un conjunto uso "add()".
+# "remove()" elimina un elemento específico.
+# "pop()" elimina un elemento arbitrario.
+# Se crean usando "set()" o con el uso de llaves ("{...}"); pero si quiero crear un conjunto vacío debo usar "set()"
+# porque "{}" crea un diccionario vacío.
+#Ejemplo:
+
+nums_set = { 1, 2, 3, 4, 5 }
+word_set = set(["spam","eggs","sausage"])
+print(3 in nums)  #Devuelve "True".
+print("spam" not in word_set) # Devuelve "False".
+
+#----------------------------------------------------------------------------------------------------------------
+
+# INTERTOOLS
+
+# Biblioteca estandard que tiene varias funciones útiles de Programación Funcional como:
+count(), cycle(), repeat(), takewhile(), chain(), accumulate(), product(), permutation()
+
 
 #----------------------------------------------------------------------------------------------------------------
 
